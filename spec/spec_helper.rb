@@ -14,6 +14,8 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'capybara/rails'
+  require_relative 'auth_helper'
+  require_relative 'auth_request_helper'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -52,6 +54,9 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
+    config.include AuthRequestHelper, :type => :request
+    config.include AuthHelper, :type => :controller
+
   end
 
 
